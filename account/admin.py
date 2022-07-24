@@ -1,6 +1,5 @@
 from django.contrib import admin
 from .models import Account
-
 from django.conf import settings
 from django.contrib import admin, messages
 from django.contrib.admin.options import IS_POPUP_VAR
@@ -11,7 +10,6 @@ from django.contrib.auth.forms import (
     UserChangeForm,
     UserCreationForm,
 )
-from django.contrib.auth.models import Group, User
 from django.core.exceptions import PermissionDenied
 from django.db import router, transaction
 from django.http import Http404, HttpResponseRedirect
@@ -23,36 +21,6 @@ from django.utils.translation import gettext
 from django.utils.translation import gettext_lazy as _
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.debug import sensitive_post_parameters
-    
-# @admin.register(Account)
-# class AccountAdmin(admin.ModelAdmin):
-#     list_display = ('full_name' , 'phone_number', 'is_staff' , 'is_superuser')
-#     list_display_links = ('phone_number','full_name')
-    
-#     fieldsets = (
-#         ('information',{
-#             'fields': (('first_name' , 'last_name') , 'phone_number' , 'password')
-#         }),
-#         ('settings',{
-#             'fields': ('groups' , 'is_superuser' , 'is_staff')
-#         })
-#     )
-    
-#     list_filter = ('is_staff',)
-    
-#     actions = ['is_staff_to_true' , 'is_staff_to_false']
-    
-#     @admin.action(description='Change is_staff to true')
-#     def is_staff_to_true(self, request, queryset):
-#         queryset.update(is_staff=True)
-        
-#     @admin.action(description='Change is_staff to false')
-#     def is_staff_to_false(self, request, queryset):
-#         queryset.update(is_staff=False)
-        
-#     @admin.display(empty_value='What is it!')
-#     def full_name(self , obj):
-#         return obj
 
 csrf_protect_m = method_decorator(csrf_protect)
 sensitive_post_parameters_m = method_decorator(sensitive_post_parameters())
@@ -78,11 +46,21 @@ class UserAdmin(admin.ModelAdmin):
             },
         ),
     )
+    actions = ['is_staff_to_true' , 'is_staff_to_false']
+    
+    @admin.action(description='Change is_staff to true')
+    def is_staff_to_true(self, request, queryset):
+        queryset.update(is_staff=True)
+        
+    @admin.action(description='Change is_staff to false')
+    def is_staff_to_false(self, request, queryset):
+        queryset.update(is_staff=False)
+        
     form = UserChangeForm
     add_form = UserCreationForm
     change_password_form = AdminPasswordChangeForm
     list_display = ('first_name' , 'phone_number', 'is_staff' , 'is_superuser')
-    list_filter = ("is_staff", "is_superuser", "groups")
+    list_filter = ("is_staff", "groups")
     search_fields = ("phone_number", "first_name", "last_name",)
     filter_horizontal = (
         "groups",
