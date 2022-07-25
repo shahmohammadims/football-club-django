@@ -200,7 +200,6 @@
 
                             {% if jazzmin_settings.navigation_expanded %}
                                 {% for app in side_menu_list %}
-                                    <li class="nav-header">{{ app.name }}</li>
                                     {% for model in app.models %}
                                         <li class="nav-item">
                                             {% if model.url %}
