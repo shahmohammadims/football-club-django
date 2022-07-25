@@ -56,7 +56,7 @@ class Exercise(models.Model):
     accounts = models.ManyToManyField(Account , blank=True)
     
     def __str__(self):
-        return self.date
+        return str(self.date)
     
     class Meta:
         ordering = ['-date']

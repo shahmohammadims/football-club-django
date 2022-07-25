@@ -218,3 +218,9 @@ class AccountAdmin(admin.ModelAdmin):
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name','price')
     search_fields = ('name','price')
+    
+    
+@admin.register(models.Exercise)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('date','category')
+    list_filter = ('date','category')
