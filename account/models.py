@@ -21,7 +21,6 @@ class AccountManager(BaseUserManager):
             last_name = last_name,
         )
         user.set_password(password)
-        user.is_staff = True
         user.is_superuser = True
         user.save()
         return user
@@ -30,7 +29,7 @@ class Account(AbstractBaseUser , PermissionsMixin):
     phone_number = models.IntegerField(unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    is_staff = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     
     objects = AccountManager()
