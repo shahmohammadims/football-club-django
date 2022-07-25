@@ -214,7 +214,7 @@ class AccountAdmin(admin.ModelAdmin):
             request.POST["_continue"] = 1
         return super().response_add(request, obj, post_url_continue)
 
-@admin.register(models.Exercise)
-class ExerciseAdmin(admin.ModelAdmin):
+@admin.register(models.Category)
+class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name','price')
     search_fields = ('name','price')

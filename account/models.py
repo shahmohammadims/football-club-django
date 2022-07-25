@@ -43,9 +43,10 @@ class Account(AbstractBaseUser , PermissionsMixin):
     class Meta:
         ordering = ['-id']
 
-class Exercise(models.Model):
+class Category(models.Model):
     name = models.CharField(max_length=50)
     price = models.IntegerField()
     
     def __str__(self):
         return self.name
+
