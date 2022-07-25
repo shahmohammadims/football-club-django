@@ -50,3 +50,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class Exercise(models.Model):
+    category = models.ForeignKey(Category , on_delete=models.SET_NULL , null=True)
+    date = models.DateField(auto_now_add=True)
+    accounts = models.ManyToManyField(Account , blank=True)
+    
+    def __str__(self):
+        return self.date
+    
+    class Meta:
+        ordering = ['-date']
