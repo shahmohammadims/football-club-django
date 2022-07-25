@@ -59,8 +59,8 @@ class AccountAdmin(admin.ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     change_password_form = AdminPasswordChangeForm
-    list_display = ('first_name' , 'phone_number', 'is_staff' , 'is_superuser')
-    list_filter = ("is_staff", "groups")
+    list_display = ('first_name' , 'phone_number', 'is_superuser')
+    list_filter = ("is_superuser", "groups")
     search_fields = ("phone_number", "first_name", "last_name",)
     filter_horizontal = (
         "groups",
