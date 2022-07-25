@@ -34,7 +34,7 @@ class AccountAdmin(admin.ModelAdmin):
             'fields': (('first_name' , 'last_name') , 'phone_number')
         }),
         ('settings',{
-            'fields': ('groups' , 'is_superuser' , 'is_staff')
+            'fields': ('groups' , 'is_superuser' , 'is_staff' , 'view_profile')
         }),
     )
     add_fieldsets = (
