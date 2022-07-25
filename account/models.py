@@ -46,10 +46,13 @@ class Account(AbstractBaseUser , PermissionsMixin):
         ordering = ['-id']
     
     @property
+    def exercises(self):
+        return Exercise.objects.filter(accounts=self)[:10]
+    
+    @property
     def debt(self):
         number = 0
-        for item in Exercise.objects.all():
-            if self in item.accounts.all():
+        for item in Exercise.objects.filter(accounts=self):
                 number += item.category.price
         return number
 
