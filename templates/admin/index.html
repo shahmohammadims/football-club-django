@@ -53,6 +53,9 @@
                             <li class="list-group-item">
                                 <b>Debt</b> <a class="float-right">{{request.user.debt}}</a>
                             </li>
+                            <li class="list-group-item">
+                                <b>Exercises This Month</b> <a class="float-right">{{request.user.exercises_this_month}}</a>
+                            </li>
                             </ul>
                                 <a href="#" class="btn btn-primary btn-block"><b>Peyment Debt</b></a>
                             </div>
@@ -63,7 +66,8 @@
     {% endif %}
 
     {% if request.user.is_superuser  or request.user.groups.all.count is not 0 %}
-        <div class="container-fluid mt-5">
+        <div class="container-fluid mt-5 mb-5">
+            <h1 style="background:#81ecec;" class="p-2 text-center mb-3 rounded">Admin</h1>
             <div class="row">
                 <div class="col-lg-9 col-12">
                     <div class="col-md-6 col-sm-12">

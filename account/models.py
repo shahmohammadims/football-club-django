@@ -1,4 +1,4 @@
-from unicodedata import category
+from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
 
@@ -55,6 +55,10 @@ class Account(AbstractBaseUser , PermissionsMixin):
         for item in Exercise.objects.filter(accounts=self):
                 number += item.category.price
         return number
+    
+    @property
+    def exercises_this_month(self):
+        return Exercise.objects.filter(accounts=self , date__month=datetime.now().month).count()
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
