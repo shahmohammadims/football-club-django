@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
 
@@ -42,6 +43,14 @@ class Account(AbstractBaseUser , PermissionsMixin):
     
     class Meta:
         ordering = ['-id']
+    
+    @property
+    def debt(self):
+        number = 0
+        for item in Exercise.objects.all():
+            if self in item.accounts.all():
+                number += item.category.price
+        return number
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
