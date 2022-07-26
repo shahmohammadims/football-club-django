@@ -1,6 +1,6 @@
-from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
+from payment.models import Payment
 
 class AccountManager(BaseUserManager):
     def create_user(self , phone_number , first_name , last_name , password=None):
@@ -55,7 +55,8 @@ class Account(AbstractBaseUser , PermissionsMixin):
     @property
     def exercises_not_payment(self):
         exer = Exercise.objects.filter(accounts=self)
-        
+        for pay in Payment.objects.filter(account=self):
+            exer -= pay.items.all()
         return exer
 
 class Category(models.Model):
