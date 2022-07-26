@@ -46,10 +46,6 @@ class Account(AbstractBaseUser , PermissionsMixin):
         ordering = ['-id']
     
     @property
-    def exercises(self):
-        return Exercise.objects.filter(accounts=self)[:10]
-    
-    @property
     def debt(self):
         number = 0
         for item in Exercise.objects.filter(accounts=self):
@@ -57,8 +53,10 @@ class Account(AbstractBaseUser , PermissionsMixin):
         return number
     
     @property
-    def exercises_this_month(self):
-        return Exercise.objects.filter(accounts=self , date__month=datetime.now().month).count()
+    def exercises_not_payment(self):
+        exer = Exercise.objects.filter(accounts=self)
+        
+        return exer
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
