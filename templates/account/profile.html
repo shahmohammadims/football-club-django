@@ -1,1 +1,43 @@
 {% extends "account/base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-9">
+        {% if request.user.exercises_not_payment %}
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Category</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for obj in request.user.exercises_not_payment %}
+                    <tr>
+                        <th scope="row">{{obj.date}}</th>
+                        <td>{{obj.category}}</td>
+                        <td>{{obj.category.price}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+    </div>
+    <div class="col-lg-3">
+        <div class="card-body box-profile shadow border">
+            <h3 class="profile-username text-center">{{request.user}}</h3>
+
+            <ul class="list-group list-group-unbordered mb-3">
+              <li class="list-group-item">
+                <b>Debt</b> <a class="float-right">{{request.user.debt}}</a>
+              </li>
+              <li class="list-group-item">
+                <b>Exercises not payment</b> <a class="float-right">{{request.user.exercises_not_payment.count}}</a>
+              </li>
+            </ul>
+
+            <a href="{% url 'payment:index' %}" class="btn btn-primary btn-block"><b>Payment Debt</b></a>
+          </div>
+    </div>
+</div>
+{% endblock content %}
