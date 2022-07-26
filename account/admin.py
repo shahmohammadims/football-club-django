@@ -59,7 +59,7 @@ class AccountAdmin(admin.ModelAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     change_password_form = AdminPasswordChangeForm
-    list_display = ('first_name' , 'phone_number', 'is_superuser')
+    list_display = ('full_name' , 'phone_number', 'debt', 'is_superuser')
     list_filter = ("is_superuser", "groups")
     search_fields = ("phone_number", "first_name", "last_name",)
     filter_horizontal = (
@@ -67,6 +67,10 @@ class AccountAdmin(admin.ModelAdmin):
         "user_permissions",
     )
 
+    @admin.display()
+    def full_name(self , obj):
+        return obj
+    
     def get_fieldsets(self, request, obj=None):
         if not obj:
             return self.add_fieldsets
