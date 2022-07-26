@@ -130,7 +130,7 @@
                 <div class="sidebar">
                     <nav class="mt-2">
                         <ul class="nav nav-pills nav-sidebar flex-column {{ jazzmin_ui.sidebar_list_classes }}" data-widget="treeview" role="menu" data-collapsible="false">
-                            {% if request.user.is_superuser or request.user.groups.count is not empty %}
+                            {% if request.user.is_superuser or request.user.groups.count is not 0 %}
                                 <li class="nav-item">
                                     <a href="{% url 'admin:index' %}" class="nav-link">
                                         <i class="nav-icon fas fa-tachometer-alt"></i>
