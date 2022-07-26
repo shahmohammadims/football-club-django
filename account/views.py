@@ -13,4 +13,5 @@ class ProfileView(TemplateView):
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         data['category_list'] = Category.objects.all()
+        data['title'] = 'Profile'
         return data

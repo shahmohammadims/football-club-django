@@ -123,7 +123,7 @@
 
             <aside class="main-sidebar elevation-4 {{ jazzmin_ui.sidebar_classes }}" id="jazzy-sidebar" style="height: 100vh!important;">
                 <a href="/" class="brand-link {{ jazzmin_ui.brand_classes }}" id="jazzy-logo">
-                    <img src="{% static 'img/logo.png' %}" class="{{ jazzmin_settings.site_logo_classes }} brand-image elevation-3">
+                    <img src="{% static jazzmin_settings.site_icon %}" class="{{ jazzmin_settings.site_logo_classes }} brand-image elevation-3">
                     <span class="brand-text font-weight-light"><b>Football</b> club</span>
                 </a>
 
@@ -140,7 +140,7 @@
                             {% endif %}
                             <li class="nav-item">
                                 <a href="{% url 'account:profile' %}" class="nav-link">
-                                    <i class="nav-icon fas fa-user"></i>
+                                    <i class="nav-icon fas fa-address-card"></i>
                                     <p>{% trans 'Profile' %}</p>
                                 </a>
                             </li>

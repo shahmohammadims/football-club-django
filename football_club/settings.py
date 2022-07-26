@@ -136,3 +136,16 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'account.Account'
 
 LOGIN_URL = reverse_lazy('admin:login')
+
+JAZZMIN_SETTINGS = {
+    'site_title':'Football club',
+    'site_logo':'img/logo.png',
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "account.account": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "exercise.category": "fas fa-list",
+        "exercise.exercise": "fas fa-dumbbell",
+        "payment.payment": "fas fa-credit-card",
+    },
+}
