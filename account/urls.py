@@ -1,9 +1,11 @@
 from django.urls import path
 from django.contrib.auth.views import LoginView , LogoutView , PasswordChangeView
+from django.views.generic import TemplateView
 from . import views
 app_name = 'account'
 
 urlpatterns = [
+    path('' , TemplateView.as_view(template_name='home.html') , name='home'),
     path('profile/' , views.ProfileView.as_view() , name='profile'),
     path('login/' , LoginView.as_view(redirect_authenticated_user=True,next_page='account:profile'),name='login'),
     path('logout/' , LogoutView.as_view() , name='logout'),
