@@ -7,5 +7,5 @@ urlpatterns = [
     path('profile/' , views.ProfileView.as_view() , name='profile'),
     path('login/' , LoginView.as_view(redirect_authenticated_user=True,next_page='account:profile'),name='login'),
     path('logout/' , LogoutView.as_view() , name='logout'),
-    path('change-password/' , PasswordChangeView.as_view(success_url='account:profile') , name='change_password')
+    path('change-password/' , PasswordChangeView.as_view(success_url='account:profile',template_name='account/password_change_form.html') , name='change_password')
 ]
