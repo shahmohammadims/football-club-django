@@ -31,6 +31,7 @@
                             </div>
                             <div class="panel-body">
                                 <form role="form" method="POST">
+                                    {% csrf_token %}
                                     <div class="row">
                                         <div class="col-xs-12">
                                             <div class="form-group"> <label>Cart Number</label>
@@ -51,12 +52,12 @@
                                             <div class="form-group"> <label>CARD OWNER</label> <input type="text" class="form-control" placeholder="Card Owner Name" value="esm famil"/> </div>
                                         </div>
                                     </div>
+                                    <div class="panel-footer">
+                                        <div class="row">
+                                            <div class="col-xs-12"> <button class="btn btn-success btn-lg btn-block" type="submit">Confirm Payment</button> </div>
+                                        </div>
+                                    </div>
                                 </form>
-                            </div>
-                            <div class="panel-footer">
-                                <div class="row">
-                                    <div class="col-xs-12"> <button class="btn btn-success btn-lg btn-block">Confirm Payment</button> </div>
-                                </div>
                             </div>
                         </div>
                     </div>

@@ -50,15 +50,18 @@ class Account(AbstractBaseUser , PermissionsMixin):
         number = 0
         for item in Exercise.objects.filter(accounts=self):
                 number += item.category.price
+        for item in Payment.objects.filter(account=self):
+            number -= item.price
         return number
     
     @property
     def exercises_not_payment(self):
         exer = Exercise.objects.filter(accounts=self)
         for pay in Payment.objects.filter(account=self):
-            exer -= pay.items.all()
+            for item in pay.items.all():
+                exer = exer.exclude(id__contains=item.id)
         return exer
-
+    
 class Category(models.Model):
     name = models.CharField(max_length=50)
     price = models.IntegerField()

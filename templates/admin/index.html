@@ -34,7 +34,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                {% for obj in request.user.exercises_not_payment.all %}
+                                {% for obj in request.user.exercises_not_payment %}
                                 <tr>
                                     <th scope="row">{{obj.date}}</th>
                                     <td>{{obj.category}}</td>
