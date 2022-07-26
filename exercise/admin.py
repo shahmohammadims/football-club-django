@@ -9,6 +9,6 @@ class CategoryAdmin(admin.ModelAdmin):
     
     
 @admin.register(models.Exercise)
-class CategoryAdmin(admin.ModelAdmin):
+class ExerciseAdmin(admin.ModelAdmin):
     list_display = ('date','category')
     list_filter = ('date','category')
