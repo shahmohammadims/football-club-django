@@ -121,7 +121,7 @@
         {% if jazzmin_settings.show_sidebar %}
             {% get_side_menu as side_menu_list %}
 
-            <aside class="main-sidebar elevation-4 {{ jazzmin_ui.sidebar_classes }}" id="jazzy-sidebar">
+            <aside class="main-sidebar elevation-4 {{ jazzmin_ui.sidebar_classes }}" id="jazzy-sidebar" style="height: 100vh!important;">
                 <a href="/" class="brand-link {{ jazzmin_ui.brand_classes }}" id="jazzy-logo">
                     <img src="{% static 'img/logo.png' %}" class="{{ jazzmin_settings.site_logo_classes }} brand-image elevation-3">
                     <span class="brand-text font-weight-light"><b>Football</b> club</span>
@@ -154,26 +154,13 @@
 
     <div class="content-wrapper">
         {% block page_content %}
-            <div class="content my-4">
+            <div class="content mt-4">
                 <div class="container-fluid">
                     {% block content %} {% endblock %}
                 </div>
             </div>
-
-
         {% endblock %}
     </div>
-
-{% block footer %}
-    {% if not is_popup %}
-        <footer class="main-footer" style="height: 50px !important;">
-            <p>{% trans 'Develop by' %} <b>Mahdi Shahmohammadi</b></p>
-        </footer>
-        {% if jazzmin_settings.show_ui_builder %}
-            {% include 'jazzmin/includes/ui_builder_panel.html' %}
-        {% endif %}
-    {% endif %}
-{% endblock %}
 
 </div>
 

@@ -156,14 +156,12 @@
                                     <p>{% trans 'Dashboard' %}</p>
                                 </a>
                             </li>
-                            {% if request.user.view_profile %}
                             <li class="nav-item">
                                 <a href="{% url 'account:profile' %}" class="nav-link">
                                     <i class="nav-icon fas fa-user"></i>
                                     <p>{% trans 'Profile' %}</p>
                                 </a>
                             </li>
-                            {% endif %}
                             {% if jazzmin_settings.navigation_expanded %}
                                 {% for app in side_menu_list %}
                                 <li class="nav-header">{{ app.name }}</li>

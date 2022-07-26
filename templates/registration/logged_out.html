@@ -57,8 +57,10 @@
     <div class="login-box-body">
         <p class="login-box-msg">{{ jazzmin_settings.welcome_sign }}</p>
         <p class="text-center">{% trans "Thanks for spending some quality time with the Web site today." %}</p>
-        <p class="text-center"><a class="btn {{ jazzmin_ui.button_classes.primary }}" href="/">{% trans 'Home Page' %}</a>
-        </p>
+        <div class="d-flex justify-content-center">
+        <p class="text-center mx-3"><a class="btn {{ jazzmin_ui.button_classes.primary }}" href="/">{% trans 'Home Page' %}</a></p>
+        <p class="text-center mx-3"><a class="btn {{ jazzmin_ui.button_classes.primary }}" href="{% url 'account:login' %}">{% trans 'Login Page' %}</a></p>
+        </div>
     </div>
 </div>
 

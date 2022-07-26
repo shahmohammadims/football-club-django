@@ -37,7 +37,6 @@ class Account(AbstractBaseUser , PermissionsMixin):
     last_name = models.CharField(max_length=50)
     is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
-    view_profile = models.BooleanField(default=True)
     objects = AccountManager()
     
     USERNAME_FIELD = 'phone_number'
