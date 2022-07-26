@@ -5,12 +5,8 @@ class IndexView(TemplateView):
     template_name = 'payment/index.html'
     
     def dispatch(self, request, *args, **kwargs):
-        if request.method == 'POST':
-            return super().dispatch(request, *args, **kwargs)
-        else:
-            return redirect('/')
-    
+        return super().dispatch(request, *args, **kwargs)
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
-        data['price'] = self.request.POST['price']
+        data['price'] = self.request.user.debt
         return data
