@@ -42,7 +42,7 @@ class AccountAdmin(admin.ModelAdmin):
             None,
             {
                 "classes": ("wide",),
-                "fields": (('first_name' , 'last_name'),"phone_number", "password1", "password2"),
+                "fields": (('first_name' , 'last_name'),"phone_number", "password1", "password2",'is_staff','view_profile'),
             },
         ),
     )
@@ -217,14 +217,3 @@ class AccountAdmin(admin.ModelAdmin):
             request.POST = request.POST.copy()
             request.POST["_continue"] = 1
         return super().response_add(request, obj, post_url_continue)
-
-@admin.register(models.Category)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name','price')
-    search_fields = ('name','price')
-    
-    
-@admin.register(models.Exercise)
-class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('date','category')
-    list_filter = ('date','category')

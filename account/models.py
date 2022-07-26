@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , PermissionsMixin , BaseUserManager
 from payment.models import Payment
+from exercise.models import Exercise
 
 class AccountManager(BaseUserManager):
     def create_user(self , phone_number , first_name , last_name , password=None):
@@ -23,6 +24,7 @@ class AccountManager(BaseUserManager):
         )
         user.set_password(password)
         user.is_superuser = True
+        user.is_staff = True
         user.view_profile = False
         user.save()
         return user
@@ -31,7 +33,7 @@ class Account(AbstractBaseUser , PermissionsMixin):
     phone_number = models.IntegerField(unique=True)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    is_staff = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     view_profile = models.BooleanField(default=True)
     objects = AccountManager()
@@ -61,21 +63,3 @@ class Account(AbstractBaseUser , PermissionsMixin):
             for item in pay.items.all():
                 exer = exer.exclude(id__contains=item.id)
         return exer
-    
-class Category(models.Model):
-    name = models.CharField(max_length=50)
-    price = models.IntegerField()
-    
-    def __str__(self):
-        return self.name
-
-class Exercise(models.Model):
-    category = models.ForeignKey(Category , on_delete=models.SET_NULL , null=True)
-    date = models.DateField(auto_now_add=True)
-    accounts = models.ManyToManyField(Account , blank=True)
-    
-    def __str__(self):
-        return str(self.date)
-    
-    class Meta:
-        ordering = ['-date']
