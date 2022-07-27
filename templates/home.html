@@ -24,7 +24,7 @@ body, html {height: 100%}
 
 <div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
   <div class="w3-display-middle">
-    <h1 class="w3-jumbo w3-animate-top text-center"><b>Football</b> club</h1>
+    <h1 class="w3-jumbo w3-animate-top text-center text-danger"><b>Football</b> club</h1>
     <hr class="w3-border-grey" style="margin:auto;width:40%">
     {% if request.user.is_authenticated %}
       <a class="btn btn-primary d-block mt-3" href="{% url 'account:profile' %}">Profile</a>
