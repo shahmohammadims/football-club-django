@@ -4,3 +4,4 @@ django-jazzmin==2.5.0
 install==1.3.5
 sqlparse==0.4.2
 tzdata==2022.1
+psycopg2==2.9.3
