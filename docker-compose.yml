@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+        football_club:
+                build: .
+                container_name : app
+                restart : always
+                environment:
+                        - POSTGRES_DB=postgres_name
+                        - POSTGRES_USER=postgres_user
+                        - POSTGRES_PASSWORD=postgres_password
+                        - POSTGRES_HOST=postgresql
+                depends_on:
+                        - postgresql
+                ports:
+                        - "8000:8000"
+                volumes:
+                        - .:/football_club
+                networks:
+                        - football_club_network
+
+        postgresql:
+                image: postgres:alpine
+                container_name : postgresql
+                environment:
+                        - POSTGRES_DB=postgres_name
+                        - POSTGRES_USER=postgres_user
+                        - POSTGRES_PASSWORD=postgres_password
+                restart : always
+                ports:
+                        - "5432:5432"
+                networks:
+                        - football_club_network
+
+networks:
+        football_club_network:
+                external: true
