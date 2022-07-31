@@ -16,6 +16,7 @@ services:
                         - "8000:8000"
                 volumes:
                         - .:/football_club
+                        - football_club_static_volume:/football_club/static
                 networks:
                         - football_club_network
 
@@ -32,6 +33,9 @@ services:
                 networks:
                         - football_club_network
 
+volumes:
+        football_club_static_volume:
+                external: true
 networks:
         football_club_network:
                 external: true
