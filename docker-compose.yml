@@ -12,14 +12,12 @@ services:
                         - POSTGRES_HOST=postgresql
                 depends_on:
                         - postgresql
-                        - nginx
                 ports:
                         - "8000:8000"
                 volumes:
                         - .:/football_club
                 networks:
                         - football_club_network
-                        - nginx_network
 
         postgresql:
                 image: postgres:alpine
@@ -33,20 +31,7 @@ services:
                         - "5432:5432"
                 networks:
                         - football_club_network
-        
-        nginx:
-                build: ./nginx
-                container_name: nginx
-                restart: always
-                ports:
-                        - "80:80"
-                volumes:
-                        - ./static:/football_club/static
-                networks:
-                        - nginx_network
 
 networks:
         football_club_network:
-                external: true
-        nginx_network:
                 external: true
