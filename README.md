@@ -5,11 +5,12 @@ run project :
 ```
 git clone 'https://github.com/shahmohammadims/football-club-django'
 cd football_club
-python pip install -r requirments.txt
-python manage.py runserver
+docker network create nginx_network
+docker network create footballclub_network
+docker-compose up --build
 ```
-superuser :
+default superuser :
 ```
 phone number = 0913.000.0000
-password = 123
+password = admin
 ```
