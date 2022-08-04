@@ -7,3 +7,6 @@ class Payment(models.Model):
     
     def __str__(self):
         return str(self.account)
+    
+    class Meta:
+        ordering = ['-id']
