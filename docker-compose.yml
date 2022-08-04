@@ -1,9 +1,9 @@
 version: '3.9'
 
 services:
-        football_club:
+        footballclub:
                 build: .
-                container_name : football_club
+                container_name : footballclub
                 restart : always
                 environment:
                         - POSTGRES_DB=postgres_name
@@ -15,9 +15,10 @@ services:
                 ports:
                         - "8000:8000"
                 volumes:
-                        - .:/football_club
+                        - .:/footballclub
                 networks:
-                        - football_club_network
+                        - footballclub_network
+                        - nginx_network
 
         postgresql:
                 image: postgres:alpine
@@ -30,8 +31,24 @@ services:
                 ports:
                         - "5432:5432"
                 networks:
-                        - football_club_network
+                        - footballclub_network
+        
+        nginx:
+                image: nginx:alpine
+                container_name: nginx
+                restart: always
+                ports:
+                        - "80:80"
+                networks:
+                        - nginx_network
+                depends_on:
+                        - footballclub
+                volumes:
+                        - ./nginx:/etc/nginx/conf.d
+                        - ./static/:/footballclub/static/
 
 networks:
-        football_club_network:
+        footballclub_network:
+                external: true
+        nginx_network:
                 external: true
