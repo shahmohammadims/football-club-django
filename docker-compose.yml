@@ -28,6 +28,8 @@ services:
                         - POSTGRES_USER=postgres_user
                         - POSTGRES_PASSWORD=postgres_password
                 restart : always
+                volumes:
+                        - ./data/:/var/lib/postgresql/data
                 ports:
                         - "5432:5432"
                 networks:
