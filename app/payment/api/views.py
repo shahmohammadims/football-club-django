@@ -22,8 +22,3 @@ class PaymentDetail(APIView):
         instance = self.get_object(pk)
         serializer = PaymentSerializer(instance,many=False)
         return Response(serializer.data)
-    
-    def delete(self, request, pk):
-        instance = self.get_object(pk)
-        instance.delete()
-        return Response(status.HTTP_204_NO_CONTENT)
