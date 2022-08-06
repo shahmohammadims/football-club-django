@@ -32,3 +32,11 @@ class AccountDetail(APIView):
         instance = self.get_object(pk)
         instance.delete()
         return Response(status.HTTP_204_NO_CONTENT)
+    
+    def put(self, request, pk):
+        instance = self.get_object(pk)
+        serializer = AccountSerializer(instance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(status.HTTP_204_NO_CONTENT)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
