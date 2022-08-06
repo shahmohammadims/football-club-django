@@ -152,3 +152,4 @@ JAZZMIN_SETTINGS = {
         "payment.payment": "fas fa-credit-card",
     },
 }
+CSRF_TRUSTED_ORIGINS = ['http://localhost']
