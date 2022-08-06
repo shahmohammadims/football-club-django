@@ -4,8 +4,9 @@
 run project :
 ```
 git clone 'https://github.com/shahmohammadims/football-club-django'
-cd football_club
+cd football_club_django
 docker network create nginx_network
+docker network create app_network
 docker network create footballclub_network
 docker-compose up --build
 ```
