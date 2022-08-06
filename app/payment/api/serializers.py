@@ -4,4 +4,4 @@ from ..models import Payment
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
-        fields = ['account','price','items']
+        fields = '__all__'
