@@ -1,6 +1,7 @@
 from rest_framework.generics import ListAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework import status
 from django.http import Http404
 from .serializers import AccountSerializer
 from ..models import Account
@@ -20,3 +21,8 @@ class AccountDetail(APIView):
         instance = self.get_object(pk)
         serializer = AccountSerializer(instance,many=False)
         return Response(serializer.data)
+    
+    def delete(self, request, pk):
+        instance = self.get_object(pk)
+        instance.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
