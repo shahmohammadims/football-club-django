@@ -138,7 +138,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'account.Account'
 
-LOGIN_URL = reverse_lazy('admin:login')
+LOGIN_URL = reverse_lazy('account:login')
 
 JAZZMIN_SETTINGS = {
     'site_title':'Football club',
