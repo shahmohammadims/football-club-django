@@ -1,13 +1,19 @@
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
 from .serializers import AccountSerializer
 from ..models import Account
-class AccountList(ListAPIView):
+class AccountList(ListAPIView, CreateAPIView):
     queryset = Account.objects.all()
     serializer_class = AccountSerializer
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+    
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
 
 class AccountDetail(APIView):
     
