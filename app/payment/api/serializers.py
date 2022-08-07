@@ -1,13 +1,8 @@
 from rest_framework import serializers
 from ..models import Payment
-from account.models import Account
-
-class AccountForPayment(serializers.ModelSerializer):
-    class Meta:
-        model = Account
-        fields = ['full_name']
+from account.api.serializers import AccountSerializer
 class PaymentSerializer(serializers.ModelSerializer):
-    account = AccountForPayment()
+    account = AccountSerializer()
     class Meta:
         model = Payment
         fields = ['account','price','items']
