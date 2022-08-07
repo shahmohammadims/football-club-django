@@ -41,10 +41,15 @@ class Account(AbstractBaseUser , PermissionsMixin):
     REQUIRED_FIELDS = ['first_name','last_name']
     
     def __str__(self):
-        return f'{self.first_name} {self.last_name}'
+        return self.phone_number
     
     class Meta:
         ordering = ['-id']
+    
+    @property
+    def full_name(self):
+        return f'{self.first_name} {self.last_name}'
+    
     
     @property
     def debt(self):
