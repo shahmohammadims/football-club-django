@@ -9,7 +9,6 @@ class CategorySerializer(serializers.ModelSerializer):
     
 class ExerciseSerializer(serializers.ModelSerializer):
     category = CategorySerializer()
-    accounts = AccountSerializer()
     class Meta:
         model = Exercise
         fields = '__all__'

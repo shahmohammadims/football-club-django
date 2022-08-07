@@ -35,3 +35,34 @@ class CategoryDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    
+    
+class ExerciseList(ListCreateAPIView):
+    queryset = Exercise.objects.all()
+    serializer_class = ExerciseSerializer
+
+class ExerciseDetail(APIView):
+    
+    def get_object(self, pk):
+        try:
+            return Exercise.objects.get(pk=pk)
+        except:
+            raise Http404
+    
+    def get(self, request, pk):
+        instance = self.get_object(pk)
+        serializer = ExerciseSerializer(instance, many=False)
+        return Response(serializer.data)
+    
+    def delete(self, request, pk):
+        instance = self.get_object(pk)
+        instance.delete()
+        return Exercise(status.HTTP_204_NO_CONTENT)
+    
+    def put(self, request, pk):
+        instance = self.get_object(pk)
+        serializer = ExerciseSerializer(instance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
