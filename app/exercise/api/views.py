@@ -1,6 +1,7 @@
 from rest_framework.generics import ListCreateAPIView
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework import status
 from ..models import Category, Exercise
 from .serializers import CategorySerializer, ExerciseSerializer
 from django.http import Http404
@@ -21,3 +22,16 @@ class CategoryDetail(APIView):
         instance = self.get_object(pk)
         serializer = CategorySerializer(instance, many=False)
         return Response(serializer.data)
+    
+    def delete(self, request, pk):
+        instance = self.get_object(pk)
+        instance.delete()
+        return Response(status.HTTP_204_NO_CONTENT)
+    
+    def put(self, request, pk):
+        instance = self.get_object(pk)
+        serializer = CategorySerializer(instance, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
