@@ -153,3 +153,9 @@ JAZZMIN_SETTINGS = {
     },
 }
 CSRF_TRUSTED_ORIGINS = ['http://localhost']
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES':[
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
