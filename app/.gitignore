@@ -1,7 +1,0 @@
-data/
-static/admin
-static/jazzmin
-static/rest_framework
-static/vendor
-__pycache__
-migrations

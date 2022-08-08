@@ -1,0 +1,8 @@
+data/
+app/static/admin/
+app/static/jazzmin/
+app/static/rest_framework/
+app/static/vendor/
+app/football_club/__pycache__/
+__pycache__
+migrations
