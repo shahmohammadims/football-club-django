@@ -8,7 +8,7 @@ cd football_club_django
 docker network create nginx_network
 docker network create app_network
 docker network create footballclub_network
-docker-compose up --build
+docker-compose up -d
 ```
 default superuser :
 ```
